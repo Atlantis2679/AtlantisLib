@@ -1,6 +1,7 @@
 name: Publish a new release
 
 on:
+  workflow_dispatch:
   push:
     tags:
       - 'v*.*.*'
@@ -56,15 +57,20 @@ jobs:
           sed -i "s/version = \".*\"/version = \"${VERSION}\"/" build.gradle.kts
           sed -i "s/val wpilibVersion = \".*\"/val wpilibVersion = \"${{ steps.get_wpilib.outputs.wpilib_version }}\"/" build.gradle.kts
           sed -i "s/val advantageKitVersion = \".*\"/val advantageKitVersion = \"${{ steps.get_ak.outputs.ak_version }}\"/" build.gradle.kts
+          
+          # TODO: Change the version and link in README file
+      
+      - name: Validate Gradle Wrapper
+        uses: gradle/wrapper-validation-action@v1
 
       - name: Build the library
         run: ./gradlew clean build
 
-      - name: Publish to GitHub Packages
-        run: ./gradlew publish
-        env:
-          USERNAME: ${{ github.actor }}
-          TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      # - name: Publish to GitHub Packages
+      #   run: ./gradlew publish
+      #   env:
+      #     USERNAME: ${{ github.actor }}
+      #     TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Create GitHub release
         uses: softprops/action-gh-release@v2

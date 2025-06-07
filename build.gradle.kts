@@ -46,10 +46,17 @@ publishing {
         create<MavenPublication>("mavenJava") {
             from(components["java"])
             groupId = group.toString()
-            artifactId = "atlantislib"
+            artifactId = project.name
             version = project.version.toString()
+
+            pom {
+                name.set("AtlantisLib")
+                description.set("Team 2679 Atlantis FRC library")
+                url.set("https://github.com/Atlantis2679/AtlantisLib")
+            }
         }
     }
+    
     repositories {
         maven {
             name = "GitHubPackages"
