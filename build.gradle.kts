@@ -52,8 +52,12 @@ publishing {
     }
     repositories {
         maven {
-            name = "LocalVendorDep"
-            url = uri("file://${projectDir}/vendordeps/maven")
+            name = "GitHubPackages"
+            url = uri("https://maven.pkg.github.com/${System.getenv("GITHUB_REPOSITORY")}")
+            credentials {
+                username = System.getenv("USERNAME")
+                password = System.getenv("TOKEN")
+            }
         }
     }
 }

@@ -1,0 +1,21 @@
+{
+    "fileVersion": 1,
+    "name": "AtlantisLib",
+    "version": "4.0.0",
+    "uuid": "b8d0be2a-8da7-4112-8b92-179389b4abe0",
+    "frcYear": 2025,
+    "mavenUrls": [
+      "https://your.maven.repo/releases/"
+    ],
+    "jsonUrl": "https://your.website/path/to/yourlibrary-2025.1.0.json",
+    "javaDependencies": [
+        {
+            "groupId": "atlantis2679.lib",
+            "artifactId": "atlantislib",
+            "version": "4.0.0"
+        }
+    ],
+    "jniDependencies": [],
+    "nativeDependencies": [],
+    "cppDependencies": []
+}
